@@ -1,4 +1,2 @@
 Minesweeper
 ===========
-
-Readme pending.
