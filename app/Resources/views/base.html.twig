@@ -1,0 +1,29 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% trans %}Minesweeper{% endtrans %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div id="container">
+    <div class="span3">
+        <h1 id="title"><a href="{{ path('ts_minesweeper_web_index') }}">{% trans %}Minesweeper{% endtrans %}</a></h1>
+        {% block navcolumn %}{% endblock %}
+    </div>
+    <div id="board-container" class="span9">
+        {% block maincolumn %}{% endblock %}
+    </div>
+</div>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+    {% javascripts '@TSMinesweeperBundle/Resources/public/js/game.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</body>
+</html>
+{% endspaceless %}

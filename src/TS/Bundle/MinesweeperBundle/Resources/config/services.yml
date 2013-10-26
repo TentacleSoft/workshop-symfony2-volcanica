@@ -1,0 +1,24 @@
+parameters:
+    ts_minesweeper.game_manager.class: TS\Bundle\MinesweeperBundle\Service\GameManager
+    ts_minesweeper.game_repository.class: TS\Bundle\MinesweeperBundle\Repository\GameRepository
+    ts_minesweeper.game_repository.argument: 'TSMinesweeperBundle:Game'
+    ts_minesweeper.user_manager.class: TS\Bundle\MinesweeperBundle\Service\UserManager
+    ts_minesweeper.user_repository.class: TS\Bundle\MinesweeperBundle\Repository\UserRepository
+    ts_minesweeper.user_repository.argument: 'TSMinesweeperBundle:User'
+
+services:
+    ts_minesweeper.game_manager:
+        class: %ts_minesweeper.game_manager.class%
+        arguments: [@ts_minesweeper.game_repository, @doctrine.orm.entity_manager]
+
+    ts_minesweeper.game_repository:
+        class: %ts_minesweeper.game_repository.class%
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments: [%ts_minesweeper.game_repository.argument%]
+
+    ts_minesweeper.user_repository:
+        class: %ts_minesweeper.user_repository.class%
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments: [%ts_minesweeper.user_repository.argument%]

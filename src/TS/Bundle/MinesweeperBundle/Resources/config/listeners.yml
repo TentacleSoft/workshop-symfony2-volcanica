@@ -1,0 +1,5 @@
+#services:
+#    kernel.listener.game_manager_not_found_exception_listener:
+#        class: TS\Bundle\MinesweeperBundle\Listener\GameManagerNotFoundExceptionListener
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

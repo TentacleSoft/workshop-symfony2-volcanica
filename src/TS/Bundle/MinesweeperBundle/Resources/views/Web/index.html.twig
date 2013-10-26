@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets 'bundles/tsminesweeper/css/main.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block navcolumn %}
+
+<div id="profile">
+{{ globals.user.name }}
+</div>
+
+<div class="section section-lobby">
+    <header>Online players</header>
+    <ul id="user-list"></ul>
+</div>
+
+<div id="scoreboard" class="section section-game">
+    <div data-player="0">
+        <div class="score">0</div>
+        <div class="username"></div>
+    </div>
+    <div data-player="1">
+        <div class="score">0</div>
+        <div class="username"></div>
+    </div>
+</div>
+
+<div id="turn" class="section section-game"></div>
+
+<div id="chat"></div>
+<form id="form-chat">
+    <input type="text" id="message" autocomplete="off" />
+    <input type="submit" id="send" class="btn btn-default" value="{% trans %}Send{% endtrans %}" />
+</form>
+{% endblock %}
+
+{% block maincolumn %}
+<div class="section section-lobby">
+    <header>Your games</header>
+    <ul id="game-list"></ul>
+</div>
+
+<table id="board" class="table section section-game">
+    {% for i in 0..15 %}
+    <tr>
+        {% for j in 0..15 %}
+        <td class="board-cell enabled" data-row="{{ i }}" data-col="{{ j }}"></td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{% block javascripts %}
+<script>var globals = JSON.parse('{{ globals|json_encode|raw }}');</script>
+{% endblock %}
